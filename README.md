@@ -218,7 +218,7 @@ El sistema cuenta con una función de inferencia que:
 
 ---
 
-18. # 📈 Modelo de Regresión Logística para Análisis de Sentimiento
+18. ### 📈 Modelo de Regresión Logística para Análisis de Sentimiento
 
 Este repositorio contiene la implementación de un **modelo de aprendizaje supervisado** basado en **Regresión Logística**, orientado al **análisis de sentimiento** de comentarios cortos de clientes de Amazon.
 
@@ -299,7 +299,7 @@ Esta configuración permite una **mejor generalización semántica**.
 
 ---
 
-## 📊 Evaluación del Modelo
+## Evaluación del Modelo
 
 El modelo se evalúa utilizando:
 
@@ -329,7 +329,7 @@ Sentimiento: Positivo | Precisión del modelo: 0.58
 
 ---
 
-## 💾 Serialización del Modelo
+## Serialización del Modelo
 
 El modelo fue serializado utilizando `joblib`, almacenando:
 
