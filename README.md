@@ -92,3 +92,267 @@ No afecta la calidad del muestreo, solo su reproducibilidad.
 * Pandas: Procesamiento y análisis de datos.
 * Numpy: Manipulación matemática.
 * Matplotlib: Visualización de datos, gráficas.
+
+---
+
+9. ### **Modelo de Árbol de Decisión para Análisis de Sentimiento**
+
+La implementación de un modelo de aprendizaje supervisado basado en Árbol de Decisión, diseñado para clasificar el sentimiento de comentarios cortos de clientes de Amazon en tres categorías:
+
+✅ Positivo
+
+➖ Neutro
+
+❌ Negativo
+
+---
+
+10. ### **Objetivo del Proyecto con este modelo**
+
+Implementar un Árbol de Decisión mejorado para análisis de sentimiento.
+
+* Evitar sesgos extremos (todo positivo o todo negativo).
+* Permitir la clasificación en tres clases.
+* Facilitar una comparación justa con un modelo de Regresión Logística.
+
+---
+
+11. ### **Estructura del Dataset**
+El dataset utilizado está en formato `.csv`y contiene aproximadamente **100 registros** con comentarios cortos (3 a 20 caracteres).
+
+Columnas relevantes:
+
+`review_body:` texto del comentario
+
+`stars:` calificación del producto (1 a 5)
+
+`lenght_review_body:` longitud del comentario
+
+`sentiment:` sentimiento categorizado **(Positivo, Neutro, Negativo)**
+
+---
+
+12. ### **Enfoque del Modelo** 
+
+Debido a las limitaciones del Árbol de Decisión para procesar texto corto, se implementó un **enfoque híbrido**:
+
+* Preprocesamiento del texto
+* Vectorización TF-IDF controlada
+* Variable numérica adicional (longitud del texto)
+* Configuración del Árbol con restricciones
+* Capa léxica simple para mejorar coherencia
+
+---
+
+13. ### 🔧**Librerías Utilizadas para este modelo Árbol de decisión**
+
+* pandas
+* numpy
+* scikit-learn
+* scipy
+* joblib
+* re
+
+---
+
+14. ### **Configuración del Modelo**
+
+**Vectorización del texto**
+* TF-IDF con vocabulario limitado
+* Solo unigramas
+* Eliminación de palabras muy poco frecuentes
+
+**Árbol de Decisión** 
+
+Parámetros clave:
+
+* `max_depth = 5`
+* `min_samples_leaf = 5`
+* `class_weight = 'balanced'`
+
+Esto evita el sobreajuste y mejora la generalización del árbol.
+
+---
+
+15. ### **Evaluación del Modelo**
+El modelo se evalúa usando:
+
+* `Accuracy`
+
+* `Precision`
+
+* `Recall`
+
+* `F1-Score`
+
+Estas métricas permiten analizar el desempeño individual por clase, especialmente en escenarios con desbalance.
+
+---
+
+16. ### **Función de Predicción** 
+
+El sistema cuenta con una función de inferencia que:
+
+* Limpia el texto de entrada
+
+* Aplica reglas léxicas simples
+
+* Utiliza el Árbol de Decisión como respaldo
+
+* Retorna :
+    * Sentimiento predicho
+    * Precisión global del modelo
+
+**Ejemplo de salida:**
+
+`Sentimiento (Árbol de Decisión): Positivo | Precisión del modelo: 0.52` 
+
+---
+
+17. ### 📌 Conclusión
+**El Árbol de Decisión**
+
+* Funciona correctamente para predecir las tres clases de sentimientos
+* Presenta resultados coherentes tras los ajustes
+* Evidencia las limitaciones del modelo frente a texto.
+
+---
+
+18. # 📈 Modelo de Regresión Logística para Análisis de Sentimiento
+
+Este repositorio contiene la implementación de un **modelo de aprendizaje supervisado** basado en **Regresión Logística**, orientado al **análisis de sentimiento** de comentarios cortos de clientes de Amazon.
+
+El modelo clasifica los comentarios en tres categorías:
+
+* ✅ Positivo
+* ➖ Neutro
+* ❌ Negativo
+
+Este modelo se utiliza como **modelo principal** del proyecto, ya que presenta un mejor desempeño que el Árbol de Decisión al trabajar con texto.
+
+---
+
+## 🎯 Objetivo del Proyecto de este modelo
+
+* Implementar un modelo de **Regresión Logística multiclase**.
+* Clasificar comentarios cortos en sentimientos positivo, neutro y negativo.
+* Obtener métricas estables y coherentes.
+* Comparar su desempeño frente a un Árbol de Decisión.
+
+---
+
+##  Estructura del Dataset
+
+El dataset utilizado se encuentra en formato `.csv` y contiene aproximadamente **100 registros**, con comentarios de entre **3 y 20 caracteres**.
+
+Columnas relevantes:
+
+* `review_body`: texto del comentario
+* `stars`: calificación del producto (1 a 5)
+* `lenght_review_body`: longitud del comentario
+* `sentiment`: etiqueta de sentimiento (Positivo, Neutro, Negativo)
+
+---
+
+## Enfoque del Modelo
+
+La Regresión Logística es un modelo **lineal**, lo que la hace especialmente adecuada para problemas de clasificación de texto. El enfoque utilizado incluye:
+
+1. Limpieza y normalización del texto
+2. Vectorización TF-IDF
+3. Inclusión de una variable numérica (longitud del texto)
+4. Entrenamiento con balanceo de clases
+5. Decisión final basada en probabilidades
+
+---
+
+## 🔧 Librerías Utilizadas
+
+```python
+pandas
+numpy
+scikit-learn
+scipy
+joblib
+re
+```
+
+---
+
+## Configuración del Modelo
+
+### Vectorización del texto
+
+* TF-IDF con unigramas y bigramas
+* Vocabulario más amplio que el Árbol de Decisión
+* Eliminación de ruido léxico
+
+### Regresión Logística
+
+Parámetros clave:
+
+* `max_iter = 1000`
+* `class_weight = 'balanced'`
+* `solver = 'liblinear'` o `lbfgs`
+
+Esta configuración permite una **mejor generalización semántica**.
+
+---
+
+## 📊 Evaluación del Modelo
+
+El modelo se evalúa utilizando:
+
+* Accuracy
+* Precision
+* Recall
+* F1-Score
+
+La métrica **F1-Score** es especialmente relevante debido al desbalance entre clases y al tamaño reducido del dataset.
+
+---
+
+## Función de Predicción
+
+El sistema cuenta con una función de inferencia que:
+
+* Valida la entrada del usuario
+* Limpia y transforma el texto
+* Aplica reglas léxicas básicas
+* Usa la Regresión Logística para la predicción final
+
+Salida esperada:
+
+```
+Sentimiento: Positivo | Precisión del modelo: 0.58
+```
+
+---
+
+## 💾 Serialización del Modelo
+
+El modelo fue serializado utilizando `joblib`, almacenando:
+
+* Modelo entrenado
+* Vectorizador TF-IDF
+* Métrica de precisión
+
+Esto permite reutilizar el modelo sin reentrenamiento.
+
+---
+
+## ✅ Ventajas del Modelo
+
+* Mejor desempeño en texto corto
+* Mayor estabilidad en las predicciones
+* Capacidad de generalizar palabras similares
+* Predicción consistente de las tres clases
+
+---
+
+
+## 📌 Conclusión
+
+La Regresión Logística demostró ser el modelo más adecuado para el análisis de sentimiento en este proyecto, superando al Árbol de Decisión en términos de estabilidad, coherencia y métricas de desempeño.
+
+Por esta razón, se selecciona como **modelo principal**, mientras que el Árbol de Decisión se utiliza como referencia comparativa.
